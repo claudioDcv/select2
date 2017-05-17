@@ -5219,12 +5219,14 @@ S2.define('select2/core',[
     var self = this;
 
     this.$element.on('change.select2', function () {
-      self.dataAdapter.current(function (data) {
-        self.trigger('selection:update', {
-          data: data
-        });
-      });
-    });
+     if (self.dataAdapter != null) {
+       self.dataAdapter.current(function (data) {
+         self.trigger('selection:update', {
+           data: data
+         });
+       });
+     }
+     });
 
     this.$element.on('focus.select2', function (evt) {
       self.trigger('focus', evt);
